@@ -1,0 +1,27 @@
+POST http://localhost:5000/auth/register HTTP/1.1
+content-type: application/json
+
+{
+    "Name": "Wojtek",
+    "Surname": "Wojtkowski",
+    "Email": "wojtek@gmail.com",
+    "Street": "kozia",
+    "PostalCode": "08-800",
+    "City": "Warszawa",
+    "Country": "Polska",
+    "Phone": "500 300 300",
+    "Password": "maslo"
+}
+
+############################################
+GET http://localhost:5000/auth HTTP/1.1
+
+#############################################
+
+POST http://localhost:5000/auth/login HTTP/1.1
+content-type: application/json
+
+{
+    "Email": "wojtek@gmail.com",
+    "Password": "maslo"
+}
