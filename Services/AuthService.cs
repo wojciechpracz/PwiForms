@@ -36,7 +36,7 @@ namespace pwiforms2.Services
 
         public async Task<User> Login(string email, string password)
         {
-            var userFromDb = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            var userFromDb = await _context.Users.Include(c => c.Country).FirstOrDefaultAsync(u => u.Email == email);
 
             if (userFromDb == null)
             {

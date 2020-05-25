@@ -69,10 +69,26 @@ namespace pwiforms2.Controllers
             var tokenHandler = new JwtSecurityTokenHandler();
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
+            
+            var userToReturnDetails = new UserToReturnWithDetails {
+                Id = user.Id,
+                Name = user.Name,
+                Surname = user.Surname,
+                Email = user.Email,
+                Street = user.Street,
+                PostalCode = user.PostalCode,
+                City = user.City,
+                Country = user.Country,
+                CountryId = user.CountryId,
+                Phone = user.Phone,
+            };
 
-            return Ok(new {
-                token = tokenHandler.WriteToken(token)
-            });
+            var userToReturn = new UserToReturnFromLogin {
+                UserDetails = userToReturnDetails,
+                Token = tokenHandler.WriteToken(token)
+            };
+
+            return Ok(userToReturn);
         }
 
         [HttpGet]

@@ -19,7 +19,7 @@
         class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
         [ngClass]="{ show: isExpanded }"
       >
-        <ul class="navbar-nav flex-grow">
+        <ul class="navbar-nav flex-grow" *ngIf="!loggedIn()">
           <li
             class="nav-item"
             [routerLinkActive]="['link-active']"
@@ -34,6 +34,19 @@
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/login']"
               >Logowanie</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav flex-grow" *ngIf="loggedIn()">
+          <li
+            class="nav-item"
+            [routerLinkActive]="['link-active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" (click)="logout()"
+              >Wyloguj</a
+            >
           </li>
         </ul>
       </div>
