@@ -2,13 +2,13 @@ POST http://localhost:5000/auth/register HTTP/1.1
 content-type: application/json
 
 {
-    "Name": "Wojtek",
+    "Name": "Wojtesadasdk",
     "Surname": "Wojtkowski",
-    "Email": "wojtek@gmail.com",
+    "Email": "s@gmail.com",
     "Street": "kozia",
     "PostalCode": "08-800",
     "City": "Warszawa",
-    "Country": "Polska",
+    "CountryId": 5,
     "Phone": "500 300 300",
     "Password": "maslo"
 }
@@ -25,3 +25,6 @@ content-type: application/json
     "Email": "wojtek@gmail.com",
     "Password": "maslo"
 }
+
+##########################################3
+GET http://localhost:5000/country HTTP/1.1

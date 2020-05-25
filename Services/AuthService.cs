@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using pwiforms2.Data;
@@ -16,8 +17,8 @@ namespace pwiforms2.Services
         }
 
         public async Task<bool> RegisterUser(User user)
-        {
-            if(_context.Users.FirstOrDefaultAsync(u => u.Email == user.Email) != null)
+        { 
+            if(await _context.Users.FirstOrDefaultAsync(u => u.Email == user.Email) != null)
             {
                 return false;
             }
@@ -75,13 +76,16 @@ namespace pwiforms2.Services
         {
             User user = new User();
             user.City = userFromReq.City;
-            user.Country = userFromReq.Country;
+            user.CountryId = userFromReq.CountryId;
             user.Email = userFromReq.Email;
             user.Name = userFromReq.Name;
             user.Phone = userFromReq.Phone;
             user.PostalCode = userFromReq.PostalCode;
             user.Street = userFromReq.Street;
             user.Surname = userFromReq.Surname;
+
+            // var country = _context.Countries.FirstOrDefault(c => c.Id == userFromReq.CountryId);
+            // user.Country = country;
 
             byte[] passwordHash, passwordSalt;
             CreatePasswordHash(userFromReq.Password, out passwordHash, out passwordSalt);
@@ -104,7 +108,7 @@ namespace pwiforms2.Services
 
         public async Task<IEnumerable<object>> GetAllUsers()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Users.Include(c => c.Country).ToListAsync();
         }
     }
 }
