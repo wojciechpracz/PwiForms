@@ -1,6 +1,12 @@
+using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using pwiforms2.Dtos;
 using pwiforms2.Models;
 using pwiforms2.Services;
@@ -12,8 +18,10 @@ namespace pwiforms2.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
-        public AuthController(IAuthService authService)
+        private readonly IConfiguration _config;
+        public AuthController(IAuthService authService, IConfiguration config)
         {
+            this._config = config;
             this._authService = authService;
         }
 
@@ -24,7 +32,7 @@ namespace pwiforms2.Controllers
 
             var result = await _authService.RegisterUser(userToRegister);
 
-            if(result)
+            if (result)
             {
                 return StatusCode(201);
             }
@@ -37,13 +45,34 @@ namespace pwiforms2.Controllers
         {
             var user = await _authService.Login(userForLogin.Email, userForLogin.Password);
 
-            if(user == null)
+            if (user == null)
+                return Unauthorized();
+
+            var claims = new[]
             {
-                return BadRequest();
-            }
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.Email)
+            };
 
-            return Ok(user);
+            var secretKey = _config.GetSection("AppSettings:Token").Value;
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
 
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.Now.AddDays(1),
+                SigningCredentials = creds
+            };
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+
+            return Ok(new {
+                token = tokenHandler.WriteToken(token)
+            });
         }
 
         [HttpGet]

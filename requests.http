@@ -4,13 +4,13 @@ content-type: application/json
 {
     "Name": "Wojtesadasdk",
     "Surname": "Wojtkowski",
-    "Email": "s@gmail.com",
+    "Email": "test@gmail.com",
     "Street": "kozia",
     "PostalCode": "08-800",
     "City": "Warszawa",
     "CountryId": 5,
     "Phone": "500 300 300",
-    "Password": "maslo"
+    "Password": "haslo"
 }
 
 ############################################
@@ -22,9 +22,10 @@ POST http://localhost:5000/auth/login HTTP/1.1
 content-type: application/json
 
 {
-    "Email": "wojtek@gmail.com",
-    "Password": "maslo"
+    "Email": "test@gmail.com",
+    "Password": "haslo"
 }
 
 ##########################################3
 GET http://localhost:5000/country HTTP/1.1
+Authorization: Bearer seyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI3IiwidW5pcXVlX25hbWUiOiJ0ZXN0QGdtYWlsLmNvbSIsIm5iZiI6MTU5MDQxMjkxMSwiZXhwIjoxNTkwNDk5MzA1LCJpYXQiOjE1OTA0MTI5MTF9.tHqTzMgIqBWHOYCMFXtZEJzOBUFgr7LRqanxBlfiDzL9joqmUS9ptJjP9VRkJrUQ1Mh2t2zOlEss7SGUWvVvcQ

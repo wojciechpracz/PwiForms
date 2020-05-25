@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using pwiforms2.Data;
@@ -7,6 +8,7 @@ using pwiforms2.Models;
 
 namespace pwiforms2.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class CountryController : ControllerBase

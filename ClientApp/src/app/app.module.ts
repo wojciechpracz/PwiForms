@@ -11,25 +11,30 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavMenuComponent,
-    HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
-    RegistrationComponent
-  ],
-  imports: [
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+   declarations: [
+      AppComponent,
+      NavMenuComponent,
+      HomeComponent,
+      CounterComponent,
+      FetchDataComponent,
+      RegistrationComponent,
+      LoginComponent,
+      LoginComponent
+   ],
+   imports: [
+   BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      { path : 'registration', component: RegistrationComponent}
+      { path : 'registration', component: RegistrationComponent},
+      { path: 'login', component: LoginComponent}
     ]),
     ReactiveFormsModule
   ],

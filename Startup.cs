@@ -7,6 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using pwiforms2.Data;
 using pwiforms2.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace PwiForms2
 {
@@ -33,6 +36,16 @@ namespace PwiForms2
                 options.UseSqlServer(Configuration.GetConnectionString("DataContext")));
 
             services.AddScoped<IAuthService, AuthService>();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options => options.TokenValidationParameters = new TokenValidationParameters{
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = 
+                        new SymmetricSecurityKey(
+                            Encoding.UTF8.GetBytes(Configuration.GetSection("Appsettings:token").Value)),
+                    ValidateIssuer = false,
+                    ValidateAudience = false                    
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +59,7 @@ namespace PwiForms2
             {
                 app.UseExceptionHandler("/Error");
             }
+            
 
             app.UseStaticFiles();
             if (!env.IsDevelopment())
@@ -54,6 +68,10 @@ namespace PwiForms2
             }
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
