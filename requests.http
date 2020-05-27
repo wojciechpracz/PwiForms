@@ -29,3 +29,23 @@ content-type: application/json
 ##########################################3
 GET http://localhost:5000/country HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI3IiwidW5pcXVlX25hbWUiOiJ0ZXN0QGdtYWlsLmNvbSIsIm5iZiI6MTU5MDQyMDUzMiwiZXhwIjoxNTkwNTA2OTMyLCJpYXQiOjE1OTA0MjA1MzJ9.LTPsAs3JVlX-kioDroqHZDcgEyPH-mS2A31rYy8SY7QwUthBzgh5SXOoEcXGWGV-Iev4uCWQEbnOwhrSk0rvRA
+ 
+
+#######################################################################################
+
+PUT http://localhost:5000/user HTTP/1.1
+content-type: application/json
+
+{
+    "Id": 1,
+    "Name": "Wojtesadasdk",
+    "Surname": "Wojtkowski",
+    "Email": "dada@gmail.com",
+    "Street": "kozia",
+    "PostalCode": "08-800",
+    "City": "Warszawa",
+    "CountryId": 5,
+    "Phone": "500 300 303"
+}
+
+############################################

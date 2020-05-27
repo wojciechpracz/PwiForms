@@ -10,11 +10,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class LoginService {
 
-private currentUserSubject: BehaviorSubject<any>;
-public currentUser: Observable<any>;
+private currentUserSubject: BehaviorSubject<User>;
+public currentUser: Observable<User>;
 
 constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
-  this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('user')));
+  this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
   this.currentUser = this.currentUserSubject.asObservable();
  }
 
@@ -28,8 +28,8 @@ submitLoginForm(loginForm: FormGroup) {
       const user = response;
       if (user) {
         localStorage.setItem('token', user.token);
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        this.currentUserSubject.next(user);
+        localStorage.setItem('currentUser', JSON.stringify(user.userDetails));
+        this.currentUserSubject.next(user.userDetails);
         return user;
       }
     })
@@ -37,7 +37,7 @@ submitLoginForm(loginForm: FormGroup) {
 }
 
 logout() {
-  localStorage.removeItem('user');
+  localStorage.removeItem('currentUser');
   localStorage.removeItem('token');
   this.currentUserSubject.next(null);
 }

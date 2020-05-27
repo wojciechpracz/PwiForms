@@ -10,6 +10,7 @@ using pwiforms2.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using PwiForms.Services;
 
 namespace PwiForms2
 {
@@ -36,7 +37,8 @@ namespace PwiForms2
                 options.UseSqlServer(Configuration.GetConnectionString("DataContext")));
 
             services.AddScoped<IAuthService, AuthService>();
-
+            services.AddScoped<IUserService, UserService>();
+            
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => options.TokenValidationParameters = new TokenValidationParameters{
                     ValidateIssuerSigningKey = true,

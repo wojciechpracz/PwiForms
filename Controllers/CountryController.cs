@@ -8,7 +8,6 @@ using pwiforms2.Models;
 
 namespace pwiforms2.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class CountryController : ControllerBase

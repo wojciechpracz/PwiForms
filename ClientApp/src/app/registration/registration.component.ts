@@ -44,5 +44,4 @@ export class RegistrationComponent implements OnInit {
       console.log(res);
     });
   }
-
 }

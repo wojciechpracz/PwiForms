@@ -12,6 +12,7 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
    declarations: [
@@ -22,10 +23,11 @@ import { LoginComponent } from './login/login.component';
       FetchDataComponent,
       RegistrationComponent,
       LoginComponent,
-      LoginComponent
+      LoginComponent,
+      UserProfileComponent
    ],
    imports: [
-   BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+      BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
 
     HttpClientModule,
     FormsModule,
@@ -34,7 +36,8 @@ import { LoginComponent } from './login/login.component';
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path : 'registration', component: RegistrationComponent},
-      { path: 'login', component: LoginComponent}
+      { path: 'login', component: LoginComponent},
+      { path: 'user-profile', component: UserProfileComponent}
     ]),
     ReactiveFormsModule
   ],
