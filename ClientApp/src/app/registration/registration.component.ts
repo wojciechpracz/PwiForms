@@ -14,6 +14,8 @@ export class RegistrationComponent implements OnInit {
   registrationForm: FormGroup;
   name: FormControl;
   countries: Country[];
+  formSubmitted = false;
+
   constructor(private http: HttpClient, private countryService: CountryService,
     private registrationService: RegistrationService) { }
 
@@ -41,7 +43,7 @@ export class RegistrationComponent implements OnInit {
 
   onSubmit() {
     this.registrationService.submitRegistrationForm(this.registrationForm).subscribe(res => {
-      console.log(res);
+      this.formSubmitted = true;
     });
   }
 }

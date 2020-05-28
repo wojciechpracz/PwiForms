@@ -22,8 +22,9 @@ POST http://localhost:5000/auth/login HTTP/1.1
 content-type: application/json
 
 {
-    "Email": "test@gmail.com",
-    "Password": "haslo"
+    "Email": "testypwi@gmail.com",
+    "Password": "haslo2
+    "
 }
 
 ##########################################3
@@ -50,4 +51,15 @@ content-type: application/json
 
 ############################################
 
-GET http://localhost:5000/user/confirmemail?email=testypwimailcom&token=wygenerowanyToken HTTP/1.1
+GET http://localhost:5000/user/resetPassword?email=testypwi@gmail.com HTTP/1.1
+
+#############################################
+
+POST http://localhost:5000/user/changePassword HTTP/1.1
+content-type: application/json
+
+{
+    "Email": "testypwi@gmail.com",
+    "Token": "6a5dab30-7343-4b3f-9c88-97fbef04c591",
+    "NewPassword": "haslo2"
+}

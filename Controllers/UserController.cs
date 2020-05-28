@@ -1,6 +1,8 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PwiForms.Dtos;
+using PwiForms.Models;
 using PwiForms.Services;
 using pwiforms2.Dtos;
 
@@ -54,6 +56,40 @@ namespace PwiForms.Controllers
             }
 
             return BadRequest();
+        }
+
+        [HttpGet("resetPassword")]
+        public async Task<IActionResult> ResetPassword(string email)
+        {
+            var result = await _userService.MakeNewPasswordResestRequest(email);
+
+            if(result)
+            {
+                return Ok();
+
+            }
+
+            return BadRequest();
+        }
+
+        [HttpPost("changePassword")]
+        public async Task<IActionResult> ChangePassword(PasswordChangeDto passwordChangeDto)
+        {
+            var passwordReset = await _userService.GetPasswordReset(passwordChangeDto.Email, passwordChangeDto.Token);
+
+            if(passwordReset != null)
+            {
+                var result = await _userService.ChangeUserPassword(passwordChangeDto.Email, passwordChangeDto.NewPassword);
+
+                if(result)
+                {
+                    return Ok();
+                }
+
+                return BadRequest();
+            }
+
+            return Unauthorized();
         }
     }
 }

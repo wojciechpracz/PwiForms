@@ -102,7 +102,6 @@ namespace pwiforms2.Controllers
         [HttpGet]
         public async Task<IEnumerable<object>> GetUsers()
         {                
-            _emailService.SendConfimationMail("testypwi@gmail.com", "wygenerowanyToken");
             return await _authService.GetAllUsers();
         }
 

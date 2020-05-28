@@ -1,6 +1,6 @@
 <h1 class="text-center mb-3">Rejestracja</h1>
 <div class="container">
-    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">  
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" *ngIf="!formSubmitted">  
       <div class="form-group row">
         <label class="col-4">
           <input
@@ -90,10 +90,12 @@
 
 
 
-      <div class="form-group text-center .btn-lg">
-        <button type="submit" class="btn btn-primary">Zarejestruj</button>
+      <div class="form-group text-center">
+        <button type="submit" class="btn btn-primary btn-lg">Zarejestruj</button>
       </div>
     </form>
-</div>
 
-{{ registrationForm.value | json }}
+    <div class="form-group text-center .btn-lg" *ngIf="formSubmitted">
+      <p class="text-success">Link do aktywacji konta wysłany został na podany adres. Aktywuj konto i zaloguj się do serwisu.</p>
+    </div>
+</div>

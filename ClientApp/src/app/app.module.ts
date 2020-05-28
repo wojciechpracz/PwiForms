@@ -13,6 +13,10 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ResetPasswordConfirmationComponent } from './reset-password-confirmation/reset-password-confirmation.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { EmailConfirmationComponent } from './email-confirmation/email-confirmation.component';
 
 @NgModule({
    declarations: [
@@ -24,10 +28,14 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
       RegistrationComponent,
       LoginComponent,
       LoginComponent,
-      UserProfileComponent
+      UserProfileComponent,
+      ResetPasswordComponent,
+      ResetPasswordConfirmationComponent,
+      ChangePasswordComponent,
+      EmailConfirmationComponent
    ],
    imports: [
-      BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
 
     HttpClientModule,
     FormsModule,
@@ -37,7 +45,18 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
       { path: 'fetch-data', component: FetchDataComponent },
       { path : 'registration', component: RegistrationComponent},
       { path: 'login', component: LoginComponent},
-      { path: 'user-profile', component: UserProfileComponent}
+      { path: 'user-profile', component: UserProfileComponent},
+      { path: 'reset-password',
+        component: ResetPasswordComponent,
+        children: [
+          {
+            path: 'confirmation',
+            component: ResetPasswordConfirmationComponent
+          }
+        ]
+      },
+      { path: 'change-password', component: ChangePasswordComponent },
+      { path: 'email-confirmation', component: EmailConfirmationComponent }
     ]),
     ReactiveFormsModule
   ],
