@@ -42,5 +42,18 @@ namespace PwiForms.Controllers
 
             return BadRequest();
         }
+
+        [HttpGet("confirmEmail")]
+        public async Task<IActionResult> ConfirmEmail(string email, string token)
+        {
+            var result = await _userService.ActivateUser(email, token);
+
+            if(result)
+            {
+                return Ok();
+            }
+
+            return BadRequest();
+        }
     }
 }

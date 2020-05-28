@@ -14,5 +14,7 @@ namespace pwiforms2.Models
         public string Phone { get; set; }
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
+        public string EmailConfirmationToken { get; set; }
+        public bool IsActivated { get; set; }
     }
 }

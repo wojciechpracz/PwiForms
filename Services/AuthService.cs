@@ -38,7 +38,7 @@ namespace pwiforms2.Services
         {
             var userFromDb = await _context.Users.Include(c => c.Country).FirstOrDefaultAsync(u => u.Email == email);
 
-            if (userFromDb == null)
+            if (userFromDb == null || !userFromDb.IsActivated)
             {
                 return null;
             }
@@ -70,31 +70,6 @@ namespace pwiforms2.Services
             }
 
             return true;
-        }
-
-        public User MapUserFromReqToUser(UserForRegistrationDto userFromReq)
-        {
-            User user = new User();
-            user.City = userFromReq.City;
-            user.CountryId = userFromReq.CountryId;
-            user.Email = userFromReq.Email;
-            user.Name = userFromReq.Name;
-            user.Phone = userFromReq.Phone;
-            user.PostalCode = userFromReq.PostalCode;
-            user.Street = userFromReq.Street;
-            user.Surname = userFromReq.Surname;
-
-            // var country = _context.Countries.FirstOrDefault(c => c.Id == userFromReq.CountryId);
-            // user.Country = country;
-
-            byte[] passwordHash, passwordSalt;
-            CreatePasswordHash(userFromReq.Password, out passwordHash, out passwordSalt);
-
-            user.PasswordHash = passwordHash;
-            user.PasswordSalt = passwordSalt;
-
-            return user;
-
         }
 
         public void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)

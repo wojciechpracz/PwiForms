@@ -1,12 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using PwiForms.Services;
 using pwiforms2.Dtos;
 using pwiforms2.Models;
 using pwiforms2.Services;
@@ -19,21 +22,24 @@ namespace pwiforms2.Controllers
     {
         private readonly IAuthService _authService;
         private readonly IConfiguration _config;
-        public AuthController(IAuthService authService, IConfiguration config)
+        private readonly IEmailService _emailService;
+        public AuthController(IAuthService authService, IConfiguration config, IEmailService emailService)
         {
-            this._config = config;
-            this._authService = authService;
+            _emailService = emailService;
+            _config = config;
+            _authService = authService;
         }
 
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserForRegistrationDto userFromRequest)
         {
-            var userToRegister = _authService.MapUserFromReqToUser(userFromRequest);
+            var userToRegister = MapUserFromReqToUser(userFromRequest);
 
             var result = await _authService.RegisterUser(userToRegister);
 
             if (result)
             {
+                _emailService.SendConfimationMail(userToRegister.Email, userToRegister.EmailConfirmationToken);
                 return StatusCode(201);
             }
 
@@ -46,7 +52,7 @@ namespace pwiforms2.Controllers
             var user = await _authService.Login(userForLogin.Email, userForLogin.Password);
 
             if (user == null)
-                return Unauthorized();
+                return BadRequest();
 
             var claims = new[]
             {
@@ -69,8 +75,9 @@ namespace pwiforms2.Controllers
             var tokenHandler = new JwtSecurityTokenHandler();
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            
-            var userToReturnDetails = new UserToReturnWithDetails {
+
+            var userToReturnDetails = new UserToReturnWithDetails
+            {
                 Id = user.Id,
                 Name = user.Name,
                 Surname = user.Surname,
@@ -83,7 +90,8 @@ namespace pwiforms2.Controllers
                 Phone = user.Phone,
             };
 
-            var userToReturn = new UserToReturnFromLogin {
+            var userToReturn = new UserToReturnFromLogin
+            {
                 UserDetails = userToReturnDetails,
                 Token = tokenHandler.WriteToken(token)
             };
@@ -93,8 +101,42 @@ namespace pwiforms2.Controllers
 
         [HttpGet]
         public async Task<IEnumerable<object>> GetUsers()
-        {
+        {                
+            _emailService.SendConfimationMail("testypwi@gmail.com", "wygenerowanyToken");
             return await _authService.GetAllUsers();
         }
+
+
+        private User MapUserFromReqToUser(UserForRegistrationDto userFromReq)
+        {
+            User user = new User();
+            user.City = userFromReq.City;
+            user.CountryId = userFromReq.CountryId;
+            user.Email = userFromReq.Email;
+            user.Name = userFromReq.Name;
+            user.Phone = userFromReq.Phone;
+            user.PostalCode = userFromReq.PostalCode;
+            user.Street = userFromReq.Street;
+            user.Surname = userFromReq.Surname;
+
+            user.EmailConfirmationToken = Guid.NewGuid().ToString();
+            user.IsActivated = false;
+
+            // var country = _context.Countries.FirstOrDefault(c => c.Id == userFromReq.CountryId);
+            // user.Country = country;
+
+            byte[] passwordHash, passwordSalt;
+            _authService.CreatePasswordHash(userFromReq.Password, out passwordHash, out passwordSalt);
+
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+
+            return user;
+        }
+
+        // private bool SendConfirmationEmail(string email, string token)
+        // {
+        //     var MailMessage = new MailMessage();
+        // }
     }
 }

@@ -8,7 +8,6 @@ namespace pwiforms2.Services
     public interface IAuthService
     {
         Task<bool> RegisterUser(User user);
-        User MapUserFromReqToUser(UserForRegistrationDto userFromReq);
         void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt);
 
         Task<IEnumerable<object>> GetAllUsers();

@@ -7,5 +7,6 @@ namespace PwiForms.Services
     public interface IUserService
     {
         Task<User> UpdateUserData(UserForUpdateDto user);
+        Task<bool> ActivateUser(string email, string token);
     } 
 }

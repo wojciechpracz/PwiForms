@@ -40,5 +40,19 @@ namespace PwiForms.Services
             return userFromDb;
 
         }
+
+        public async Task<bool> ActivateUser(string email, string token)
+        {
+            var userFromDb = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+
+            if(userFromDb != null && userFromDb.EmailConfirmationToken == token)
+            {
+                userFromDb.IsActivated = true;
+                await _context.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
+        }
     }
 }
