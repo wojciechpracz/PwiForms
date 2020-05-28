@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  passwordIncorrect = false;
 
   constructor(private loginService: LoginService, private router: Router) { }
 
@@ -23,7 +24,10 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.loginService.submitLoginForm(this.loginForm.value).subscribe(res => {},
-      error => console.log(error), () =>
+      error => {
+        console.log(error);
+        this.passwordIncorrect = true;
+      }, () =>
       this.router.navigate(['/']));
   }
 }

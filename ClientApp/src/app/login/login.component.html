@@ -2,7 +2,10 @@
     <h1 class="text-center mb-3 mt-5">Logowanie</h1>
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div class="row justify-content-center mt-5">
+        <div *ngIf="passwordIncorrect" class="text-center mt-5">
+            <small class="text-danger">Hasło lub email są nieprawidłowe.</small>
+        </div>
+        <div class="row justify-content-center">
             <label class="col-4">
                 <input
                 type="email"

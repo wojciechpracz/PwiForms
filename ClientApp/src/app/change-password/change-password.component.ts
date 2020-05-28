@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../services/user.service';
 
@@ -19,7 +19,11 @@ export class ChangePasswordComponent implements OnInit {
 
   ngOnInit() {
     this.newPasswordForm = new FormGroup({
-      'newPassword': new FormControl(''),
+      'newPassword': new FormControl(null, [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(15)
+      ]),
       'email': new FormControl(''),
       'token': new FormControl('')
     });

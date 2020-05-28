@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../interfaces/user';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserForEdit } from '../interfaces/userForEdit';
 import { CountryService } from '../services/country.service';
 
@@ -31,13 +31,36 @@ export class UserProfileComponent implements OnInit {
     this.setUserForEdit();
     this.editUserForm = new FormGroup({
       id: new FormControl(''),
-      name: new FormControl(''),
-      surname: new FormControl(''),
-      street: new FormControl(''),
-      postalCode: new FormControl(''),
-      city: new FormControl(''),
+      name: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(15)
+      ]),
+      surname: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(15)
+      ]),
+      street: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(15)
+      ]),
+      postalCode: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(15)
+      ]),
+      city: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(15)
+      ]),
       countryId: new FormControl(''),
-      phone: new FormControl(''),
+      phone: new FormControl(null, [
+        Validators.required,
+        Validators.pattern('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')
+      ]),
     });
     this.editUserForm.setValue(this.userForEdit);
   }
@@ -73,11 +96,13 @@ export class UserProfileComponent implements OnInit {
 
 
   submit() {
-    this.userService.submitUserEditForm(this.editUserForm).subscribe(res => {
-      this.setUserFromResponse(res);
-      this.setUserForEdit();
-    });
-    this.user = this.userService.getCurrentUser();
-    this.toggleEddit();
+    if (this.editUserForm.valid) {
+      this.userService.submitUserEditForm(this.editUserForm).subscribe(res => {
+        this.setUserFromResponse(res);
+        this.setUserForEdit();
+      });
+      this.user = this.userService.getCurrentUser();
+      this.toggleEddit();
+    }
   }
 }

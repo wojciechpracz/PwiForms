@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 
@@ -17,14 +17,18 @@ export class ResetPasswordComponent implements OnInit {
 
   ngOnInit() {
     this.resetPasswordForm = new FormGroup({
-      email: new FormControl('')
+      email: new FormControl(null, [
+        Validators.required,
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')])
     });
   }
 
   onSubmit() {
-    this.userService.submitResetPasswordForm(this.resetPasswordForm.controls.email.value).subscribe(res => {
-      this.formSubmitted = true;
-    });
+    if (this.resetPasswordForm.valid) {
+      this.userService.submitResetPasswordForm(this.resetPasswordForm.controls.email.value).subscribe(res => {
+        this.formSubmitted = true;
+      });
+    }
   }
 
 }

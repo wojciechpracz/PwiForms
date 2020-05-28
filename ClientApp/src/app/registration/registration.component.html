@@ -1,8 +1,13 @@
 <h1 class="text-center mb-3">Rejestracja</h1>
 <div class="container">
-    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" *ngIf="!formSubmitted">  
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" *ngIf="!formSubmitted">
+                    
+  	<div *ngIf='(registrationForm.get("email")?.invalid && registrationForm.get("email").touched) || registrationForm.get("email").dirty' class="text-center">
+    	<small *ngIf='registrationForm.get("email")?.errors?.required' class="text-danger">Email jest wymagany.</small>
+    	<small *ngIf='registrationForm.get("email")?.errors?.pattern' class="text-danger">Podano nieprawidłowy adres.</small>
+  	</div>  
       <div class="form-group row">
-        <label class="col-4">
+        <label class="col-4">   
           <input
             type="email"
             placeholder="Email"
@@ -10,6 +15,10 @@
             class="form-control">
         </label>
       </div>
+      <div *ngIf='(registrationForm.get("password")?.invalid && registrationForm.get("password").touched) || registrationForm.get("password").dirty' class="text-center">
+        <small *ngIf='registrationForm.get("password")?.errors?.required' class="text-danger">To pole jest wymagane.</small>
+        <small *ngIf='registrationForm.get("password")?.errors?.minlength || registrationForm.get("password")?.errors?.maxlength' class="text-danger">To pole musi mieć od 3 do 15 znaków.</small>
+      </div> 
       <div class="form-group row">
         <label class="col-4">
           <input
@@ -19,7 +28,10 @@
             class="form-control">
         </label>
       </div>
-
+      <div *ngIf='(registrationForm.get("name")?.invalid && registrationForm.get("name").touched) || registrationForm.get("name").dirty' class="text-center">
+        <small *ngIf='registrationForm.get("name")?.errors?.required' class="text-danger">To pole jest wymagane.</small>
+        <small *ngIf='registrationForm.get("name")?.errors?.minlength || registrationForm.get("name")?.errors?.maxlength' class="text-danger">To pole musi mieć od 3 do 15 znaków.</small>
+      </div>   
       <div class="form-group row">
         <label class="col-4">
           <input
@@ -28,7 +40,11 @@
             formControlName="name"
             class="form-control">
         </label>
-      </div>  
+      </div>
+      <div *ngIf='(registrationForm.get("surname")?.invalid && registrationForm.get("surname").touched) || registrationForm.get("surname").dirty' class="text-center">
+        <small *ngIf='registrationForm.get("surname")?.errors?.required' class="text-danger">To pole jest wymagane.</small>
+        <small *ngIf='registrationForm.get("surname")?.errors?.minlength || registrationForm.get("surname")?.errors?.maxlength' class="text-danger">To pole musi mieć od 3 do 15 znaków.</small>
+      </div>    
       <div class="form-group row">
         <label class="col-4">
           <input
@@ -38,6 +54,10 @@
             class="form-control">
         </label>
       </div>
+      <div *ngIf='(registrationForm.get("street")?.invalid && registrationForm.get("street").touched) || registrationForm.get("street").dirty' class="text-center">
+        <small *ngIf='registrationForm.get("street")?.errors?.required' class="text-danger">To pole jest wymagane.</small>
+        <small *ngIf='registrationForm.get("street")?.errors?.minlength || registrationForm.get("street")?.errors?.maxlength' class="text-danger">To pole musi mieć od 3 do 15 znaków.</small>
+      </div>    
       <div class="form-group row">
         <label class="col-4">
           <input
@@ -47,6 +67,10 @@
             class="form-control">
         </label>
       </div>
+      <div *ngIf='(registrationForm.get("postalCode")?.invalid && registrationForm.get("postalCode").touched) || registrationForm.get("postalCode").dirty' class="text-center">
+        <small *ngIf='registrationForm.get("postalCode")?.errors?.required' class="text-danger">To pole jest wymagane.</small>
+        <small *ngIf='registrationForm.get("postalCoide")?.errors?.minlength || registrationForm.get("postalCode")?.errors?.maxlength' class="text-danger">To pole musi mieć od 3 do 15 znaków.</small>
+      </div>    
       <div class="form-group row">
         <label class="col-4">
           <input
@@ -56,6 +80,10 @@
             class="form-control">
         </label>
       </div>
+      <div *ngIf='(registrationForm.get("city")?.invalid && registrationForm.get("city").touched) || registrationForm.get("city").dirty' class="text-center">
+        <small *ngIf='registrationForm.get("city")?.errors?.required' class="text-danger">To pole jest wymagane.</small>
+        <small *ngIf='registrationForm.get("city")?.errors?.minlength || registrationForm.get("city")?.errors?.maxlength' class="text-danger">To pole musi mieć od 3 do 15 znaków.</small>
+      </div>   
       <div class="form-group row">
         <label class="col-4">
           <input
@@ -65,6 +93,10 @@
             class="form-control">
         </label>
       </div>
+      <div *ngIf='(registrationForm.get("phone")?.invalid && registrationForm.get("phone").touched) || registrationForm.get("phone").dirty' class="text-center">
+        <small *ngIf='registrationForm.get("phone")?.errors?.required' class="text-danger">To pole jest wymagane.</small>
+        <small *ngIf='registrationForm.get("phone")?.errors?.pattern' class="text-danger">Podano nieprawidłowy numer telefonu.</small>
+      </div>  
       <div class="form-group row">
         <label class="col-4">
           <input
