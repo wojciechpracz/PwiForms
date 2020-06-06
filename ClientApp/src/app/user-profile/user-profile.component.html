@@ -2,84 +2,97 @@
 <div class="container">
   <div *ngIf="!editEnabled">
     <h2>{{user.name}} {{user.surname}}</h2>
-    <p><strong>Ulica: </strong>{{user.street}}</p>
-    <p><strong>Miasto: </strong>{{user.city}}</p>
-    <p><strong>Kod pocztowy: </strong>{{user.postalCode}}</p>
-    <p><strong>Kraj: </strong>{{user.country.name}}</p>
-    <p><strong>Numer telefonu: </strong>{{user.phone}}</p>
-    <button type="button" class="btn btn-primary" (click)="toggleEddit()">Edytuj</button>
+    <p><strong>{{'Street' | translate}}: </strong>{{user.street}}</p>
+    <p><strong>{{'City' | translate}}: </strong>{{user.city}}</p>
+    <p><strong>{{'PostalCode' | translate}} </strong>{{user.postalCode}}</p>
+    <p><strong>{{'Country' | translate}}: </strong>{{user.country.name}}</p>
+    <p><strong>{{'PhoneNumber' | translate}}: </strong>{{user.phone}}</p>
+    <button type="button" class="btn btn-primary" (click)="toggleEddit()">{{'Edit' | translate}}</button>
   </div>
   <div *ngIf="editEnabled">
     <form [formGroup]="editUserForm" (ngSubmit)="submit()">  
     <div class="form-group row">
       <label class="col-4">
-        Imię
+        {{'Name' | translate}}
         <input
           type="text"
-          placeholder="Imię"
+          placeholder="{{'Name' | translate}}"
           formControlName="name"
           class="form-control">
       </label>
     </div>
       <div class="form-group row">
         <label class="col-4">
-          Nazwisko
+          {{'Surname' | translate}}          
           <input
             type="text"
-            placeholder="Nazwisko"
+            placeholder="{{'Surname' | translate}}"
             formControlName="surname"
             class="form-control">
         </label>
         </div>
         <div class="form-group row">
           <label class="col-4">
-            Ulica
+            {{'Street' | translate}}
             <input
               type="text"
-              placeholder="ulica"
+              placeholder="{{'Street' | translate}}"
               formControlName="street"
               class="form-control">
           </label>
         </div>
         <div class="form-group row">
           <label class="col-4">
-            Miasto
+            {{'City' | translate}}
             <input
               type="text"
-              placeholder="Miasto"
+              placeholder="{{'City' | translate}}"
               formControlName="city"
               class="form-control">
           </label>
         </div>
         <div class="form-group row">
           <label class="col-4">
-            Kod pocztowy
+            {{'PostalCode' | translate}}
             <input
               type="text"
-              placeholder="Kod pocztowy"
+              placeholder="{{'PostalCode' | translate}}"
               formControlName="postalCode"
               class="form-control">
           </label>
         </div>
         <div class="form-group row">
           <label class="col-4">
-            Numer telefonu
+            {{'PhoneNumber' | translate}}
             <input
               type="text"
-              placeholder="Numer telefony"
+              placeholder="{{'PhoneNumber' | translate}}"
               formControlName="phone"
               class="form-control">
           </label>
         </div>
-        <select
-          id = "countrySelect"
-          name = "countrySelect"
-          formControlName="countryId"
-          class="form-control col-4">
-          Kraj
-          <option value="" disabled>Wybierz kraj</option>
-          <option *ngFor="let country of countries" [ngValue]="country.id">{{ country.name }}</option>
-      </select>
+        <div *ngIf="currentLanguage == 'pl'">
+          <select
+            id = "countrySelect"
+            name = "countrySelect"
+            formControlName="countryId"
+            class="form-control col-4">
+            {{'Country' | translate}}
+            <option value="" disabled>{{'SelectCountry' | translate}}</option>
+            <option *ngFor="let country of countries" [ngValue]="country.id">{{ country.name }}</option>
+          </select>
+        </div>
+        <div *ngIf="currentLanguage == 'en'">
+          <select
+            id = "countrySelect"
+            name = "countrySelect"
+            formControlName="countryId"
+            class="form-control col-4">
+            {{'Country' | translate}}
+            <option value="" disabled>{{'SelectCountry' | translate}}</option>
+            <option *ngFor="let country of countries" [ngValue]="country.id">{{ country.nameEnglish }}</option>
+          </select>
+        </div>
     <button type="submit" class="btn btn-primary mt-5">Zapisz</button>
   </form>
   </div>

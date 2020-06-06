@@ -4,6 +4,7 @@ import { User } from '../interfaces/user';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserForEdit } from '../interfaces/userForEdit';
 import { CountryService } from '../services/country.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-profile',
@@ -16,12 +17,14 @@ export class UserProfileComponent implements OnInit {
   userForEdit: any;
   editEnabled = false;
   countries: Country[];
+  currentLanguage: string;
 
   editUserForm: FormGroup;
 
-  constructor(private userService: UserService, private countryService: CountryService) { }
+  constructor(private userService: UserService, private countryService: CountryService, private translate: TranslateService) { }
 
   ngOnInit() {
+    this.currentLanguage = this.translate.defaultLang;
     this.user = this.userService.getCurrentUser();
     this.countryService.getCountries().subscribe(result => {
       this.countries = result;

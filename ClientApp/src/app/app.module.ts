@@ -1,9 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+// import ngx-translate and the http loader
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -38,6 +42,13 @@ import { EmailConfirmationComponent } from './email-confirmation/email-confirmat
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
 
     HttpClientModule,
+    TranslateModule.forRoot({
+        loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+        }
+    }),
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -64,3 +75,8 @@ import { EmailConfirmationComponent } from './email-confirmation/email-confirmat
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+// required for AOT compilation
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CountryService } from '../services/country.service';
 import { RegistrationService } from '../services/registration.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-registration',
@@ -15,11 +16,14 @@ export class RegistrationComponent implements OnInit {
   name: FormControl;
   countries: Country[];
   formSubmitted = false;
+  currentLanguage: string;
 
   constructor(private http: HttpClient, private countryService: CountryService,
-    private registrationService: RegistrationService) { }
+    private registrationService: RegistrationService, private translate: TranslateService) { }
 
   ngOnInit() {
+    this.currentLanguage = this.translate.defaultLang;
+
     this.countryService.getCountries().subscribe(result => {
       this.countries = result;
     }, error => {

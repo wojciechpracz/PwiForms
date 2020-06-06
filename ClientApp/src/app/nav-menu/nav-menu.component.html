@@ -3,7 +3,7 @@
     class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
   >
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">Formularze</a>
+      <a class="navbar-brand" [routerLink]="['/']">AirQuality</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -28,12 +28,12 @@
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/registration']"
-              >Rejestracja</a
+              >{{'Registration' | translate}}</a
             >
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/login']"
-              >Logowanie</a>
+              >{{'Login' | translate}}</a>
           </li>
         </ul>
         <ul class="navbar-nav flex-grow" *ngIf="loggedIn()">
@@ -44,8 +44,13 @@
           >
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark"
+              >{{'ChangeLanguage' | translate}}</a
+            >
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" (click)="logout()"
-              >Wyloguj</a
+              >{{'Logout' | translate}}</a
             >
           </li>
         </ul>

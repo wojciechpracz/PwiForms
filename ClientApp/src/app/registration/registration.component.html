@@ -1,10 +1,10 @@
-<h1 class="text-center mb-3">Rejestracja</h1>
+<h1 class="text-center mb-3">{{'Registration' | translate}}</h1>
 <div class="container">
     <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" *ngIf="!formSubmitted">
                     
   	<div *ngIf='(registrationForm.get("email")?.invalid && registrationForm.get("email").touched) || registrationForm.get("email").dirty' class="text-center">
-    	<small *ngIf='registrationForm.get("email")?.errors?.required' class="text-danger">Email jest wymagany.</small>
-    	<small *ngIf='registrationForm.get("email")?.errors?.pattern' class="text-danger">Podano nieprawidłowy adres.</small>
+    	<small *ngIf='registrationForm.get("email")?.errors?.required' class="text-danger">{{'EmailRequired' | translate}}</small>
+    	<small *ngIf='registrationForm.get("email")?.errors?.pattern' class="text-danger">{{'EmailIncorrect' | translate}}</small>
   	</div>  
       <div class="form-group row">
         <label class="col-4">   
@@ -16,118 +16,135 @@
         </label>
       </div>
       <div *ngIf='(registrationForm.get("password")?.invalid && registrationForm.get("password").touched) || registrationForm.get("password").dirty' class="text-center">
-        <small *ngIf='registrationForm.get("password")?.errors?.required' class="text-danger">To pole jest wymagane.</small>
-        <small *ngIf='registrationForm.get("password")?.errors?.minlength || registrationForm.get("password")?.errors?.maxlength' class="text-danger">To pole musi mieć od 3 do 15 znaków.</small>
+        <small *ngIf='registrationForm.get("password")?.errors?.required' class="text-danger">{{'FieldRequired' | translate}}</small>
+        <small *ngIf='registrationForm.get("password")?.errors?.minlength || registrationForm.get("password")?.errors?.maxlength' class="text-danger">{{'FieldLength' | translate}}</small>
       </div> 
       <div class="form-group row">
         <label class="col-4">
           <input
             type="password"
-            placeholder="Hasło"
+            placeholder="{{'Password' | translate}}"
             formControlName="password"
             class="form-control">
         </label>
       </div>
       <div *ngIf='(registrationForm.get("name")?.invalid && registrationForm.get("name").touched) || registrationForm.get("name").dirty' class="text-center">
-        <small *ngIf='registrationForm.get("name")?.errors?.required' class="text-danger">To pole jest wymagane.</small>
-        <small *ngIf='registrationForm.get("name")?.errors?.minlength || registrationForm.get("name")?.errors?.maxlength' class="text-danger">To pole musi mieć od 3 do 15 znaków.</small>
+        <small *ngIf='registrationForm.get("name")?.errors?.required' class="text-danger">{{'FieldRequired' | translate}}</small>
+        <small *ngIf='registrationForm.get("name")?.errors?.minlength || registrationForm.get("name")?.errors?.maxlength' class="text-danger">{{'FieldLength' | translate}}</small>
       </div>   
       <div class="form-group row">
         <label class="col-4">
           <input
             type="text"
-            placeholder="Imię"
+            placeholder="{{'Name' | translate}}"
             formControlName="name"
             class="form-control">
         </label>
       </div>
       <div *ngIf='(registrationForm.get("surname")?.invalid && registrationForm.get("surname").touched) || registrationForm.get("surname").dirty' class="text-center">
-        <small *ngIf='registrationForm.get("surname")?.errors?.required' class="text-danger">To pole jest wymagane.</small>
-        <small *ngIf='registrationForm.get("surname")?.errors?.minlength || registrationForm.get("surname")?.errors?.maxlength' class="text-danger">To pole musi mieć od 3 do 15 znaków.</small>
+        <small *ngIf='registrationForm.get("surname")?.errors?.required' class="text-danger">{{'FieldRequired' | translate}}</small>
+        <small *ngIf='registrationForm.get("surname")?.errors?.minlength || registrationForm.get("surname")?.errors?.maxlength' class="text-danger">{{'FieldLength' | translate}}</small>
       </div>    
       <div class="form-group row">
         <label class="col-4">
           <input
             type="text"
-            placeholder="Nazwisko"
+            placeholder="{{'Surname' | translate}}"
             formControlName="surname"
             class="form-control">
         </label>
       </div>
       <div *ngIf='(registrationForm.get("street")?.invalid && registrationForm.get("street").touched) || registrationForm.get("street").dirty' class="text-center">
-        <small *ngIf='registrationForm.get("street")?.errors?.required' class="text-danger">To pole jest wymagane.</small>
-        <small *ngIf='registrationForm.get("street")?.errors?.minlength || registrationForm.get("street")?.errors?.maxlength' class="text-danger">To pole musi mieć od 3 do 15 znaków.</small>
+        <small *ngIf='registrationForm.get("street")?.errors?.required' class="text-danger">{{'FieldRequired' | translate}}</small>
+        <small *ngIf='registrationForm.get("street")?.errors?.minlength || registrationForm.get("street")?.errors?.maxlength' class="text-danger">{{'FieldLength' | translate}}</small>
       </div>    
       <div class="form-group row">
         <label class="col-4">
           <input
             type="text"
-            placeholder="Ulica"
+            placeholder="{{'Street' | translate}}"
             formControlName="street"
             class="form-control">
         </label>
       </div>
       <div *ngIf='(registrationForm.get("postalCode")?.invalid && registrationForm.get("postalCode").touched) || registrationForm.get("postalCode").dirty' class="text-center">
-        <small *ngIf='registrationForm.get("postalCode")?.errors?.required' class="text-danger">To pole jest wymagane.</small>
-        <small *ngIf='registrationForm.get("postalCoide")?.errors?.minlength || registrationForm.get("postalCode")?.errors?.maxlength' class="text-danger">To pole musi mieć od 3 do 15 znaków.</small>
+        <small *ngIf='registrationForm.get("postalCode")?.errors?.required' class="text-danger">{{'FieldRequired' | translate}}</small>
+        <small *ngIf='registrationForm.get("postalCoide")?.errors?.minlength || registrationForm.get("postalCode")?.errors?.maxlength' class="text-danger">{{'FieldLength' | translate}}</small>
       </div>    
       <div class="form-group row">
         <label class="col-4">
           <input
             type="text"
-            placeholder="Kod pocztowy"
+            placeholder="{{'PostalCode' | translate}}"
             formControlName="postalCode"
             class="form-control">
         </label>
       </div>
       <div *ngIf='(registrationForm.get("city")?.invalid && registrationForm.get("city").touched) || registrationForm.get("city").dirty' class="text-center">
-        <small *ngIf='registrationForm.get("city")?.errors?.required' class="text-danger">To pole jest wymagane.</small>
-        <small *ngIf='registrationForm.get("city")?.errors?.minlength || registrationForm.get("city")?.errors?.maxlength' class="text-danger">To pole musi mieć od 3 do 15 znaków.</small>
+        <small *ngIf='registrationForm.get("city")?.errors?.required' class="text-danger">{{'FieldRequired' | translate}}</small>
+        <small *ngIf='registrationForm.get("city")?.errors?.minlength || registrationForm.get("city")?.errors?.maxlength' class="text-danger">{{'FieldLength' | translate}}</small>
       </div>   
       <div class="form-group row">
         <label class="col-4">
           <input
             type="text"
-            placeholder="Miasto"
+            placeholder="{{'City' | translate}}"
             formControlName="city"
             class="form-control">
         </label>
       </div>
       <div *ngIf='(registrationForm.get("phone")?.invalid && registrationForm.get("phone").touched) || registrationForm.get("phone").dirty' class="text-center">
-        <small *ngIf='registrationForm.get("phone")?.errors?.required' class="text-danger">To pole jest wymagane.</small>
-        <small *ngIf='registrationForm.get("phone")?.errors?.pattern' class="text-danger">Podano nieprawidłowy numer telefonu.</small>
+        <small *ngIf='registrationForm.get("phone")?.errors?.required' class="text-danger">{{'FieldRequired' | translate}}</small>
+        <small *ngIf='registrationForm.get("phone")?.errors?.pattern' class="text-danger">{{'IncorrectPhoneNumber' | translate}}</small>
       </div>  
       <div class="form-group row">
         <label class="col-4">
           <input
             type="text"
-            placeholder="Numer telefonu"
+            placeholder="{{'PhoneNumber' | translate}}"
             formControlName="phone"
             class="form-control">
         </label>
       </div>
-      <div class="form-group row">
-        <p class="text-muted col-12 text-center">
-          W naszym serwisie rejestrować się mogą tylko osoby z UE, dlatego tylko takie kraje są na liście
-        </p>
-        <select
-          id = "countrySelect"
-          name = "countrySelect"
-          formControlName="countryId"
-          class="form-control col-4">
-          <option value="" disabled>Wybierz kraj</option>
-          <option *ngFor="let country of countries" [ngValue]="country.id">{{ country.name }}</option>
-        </select>
+      <div *ngIf="currentLanguage == 'en'">
+        <div class="form-group row">
+          <p class="text-muted col-12 text-center">
+            {{'UEMembersOnly' | translate}}
+          </p>
+          <select
+            id = "countrySelect"
+            name = "countrySelect"
+            formControlName="countryId"
+            class="form-control col-4">
+            <option value="" disabled>{{'SelectCountry' | translate}}</option>
+            <option *ngFor="let country of countries" [ngValue]="country.id">{{ country.nameEnglish }}</option>
+          </select>
+        </div>
+      </div>
+      <div *ngIf="currentLanguage == 'pl'">
+        <div class="form-group row">
+          <p class="text-muted col-12 text-center">
+            {{'UEMembersOnly' | translate}}
+          </p>
+          <select
+            id = "countrySelect"
+            name = "countrySelect"
+            formControlName="countryId"
+            class="form-control col-4">
+            <option value="" disabled>{{'SelectCountry' | translate}}</option>
+            <option *ngFor="let country of countries" [ngValue]="country.id">{{ country.name }}</option>
+          </select>
+        </div>
       </div>
 
 
 
       <div class="form-group text-center">
-        <button type="submit" class="btn btn-primary btn-lg">Zarejestruj</button>
+        <button type="submit" class="btn btn-primary btn-lg">{{'Register' | translate}}</button>
       </div>
     </form>
 
     <div class="form-group text-center .btn-lg" *ngIf="formSubmitted">
-      <p class="text-success">Link do aktywacji konta wysłany został na podany adres. Aktywuj konto i zaloguj się do serwisu.</p>
+      <p class="text-success">{{'ActivationLinkSent' | translate}}</p>
     </div>
 </div>
