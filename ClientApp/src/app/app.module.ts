@@ -81,7 +81,8 @@ import { StationDetailsComponent } from './station-details/station-details.compo
       { path: 'change-password', component: ChangePasswordComponent },
       { path: 'email-confirmation', component: EmailConfirmationComponent },
       { path: 'change-language', component: ChangeLanguageComponent},
-      { path: 'all-stations', component: AllStationsComponent}
+      { path: 'all-stations', component: AllStationsComponent},
+      { path: 'station/:id', component: StationDetailsComponent, pathMatch: 'full'}
     ]),
     ReactiveFormsModule
   ],

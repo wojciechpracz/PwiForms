@@ -12,4 +12,8 @@ getStations() {
   return this.http.get<Station[]>(this.baseUrl + 'stations');
 }
 
+getStation(id) {
+  return this.http.get<any>(this.baseUrl + 'stations/' + id);
+}
+
 }

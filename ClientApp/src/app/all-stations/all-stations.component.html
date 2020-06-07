@@ -1,7 +1,7 @@
 <div class="container">
 
   <h5 class="text-center mb-3 mt-3">
-    Wybierz z poniższej listy stację, dla której chcesz sprawdzić jakość powietrza
+    {{"PickAStation" | translate}}
   </h5>
 
   <table class="table">
@@ -30,7 +30,7 @@
           </td>
           <td>
             <div class="row text-center">
-              <a class="col" href="#">{{"Details" | translate}}</a>          
+              <a class="col" [routerLink]="['/station', station.stationId]" >{{"Details" | translate}}</a>          
               <a class="col" href="#">{{"Save" | translate}}</a>
             </div>
           </td>

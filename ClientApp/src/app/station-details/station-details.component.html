@@ -1,3 +1,27 @@
-<p>
-  station-details works!
-</p>
+<div class="container">
+  <div *ngIf="station">
+    <h1>
+        {{station.stationName}}
+    </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+              <th scope="col"  *ngFor="let sensor of station.positions">
+                  {{sensor.parameters.paramFormula}} 
+              </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td *ngFor="let measureValue of station.positionValuse">
+                  {{measureValue}}
+              </td>
+            </tr>
+        </tbody>
+    </table>
+    <p>---------------------------------------------------------------------------------------------</p>
+    <h3 class="text-primary">{{"AirIndex" | translate}} </h3>
+    <p>{{station.airIndex}}</p>
+  </div>
+</div>

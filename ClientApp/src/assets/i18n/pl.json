@@ -52,5 +52,8 @@
     "District": "Powiat",
     "Province": "Województwo",
     "Actions": "Akcje",    
-    "Details": "Szczegóły"
+    "Details": "Szczegóły",
+    "PickAStation": "Wybierz z poniższej listy stację, dla której chcesz sprawdzić jakość powietrza",
+    "AirIndex": "Wskaźnik jakości powietrza: "
+
 }

@@ -52,8 +52,7 @@
     "District": "District",
     "Province": "Province",
     "Actions": "Actions",
-    "Details": "Details"
-
-
-
+    "Details": "Details",
+    "PickAStation": "Pick a station to check air quality.",
+    "AirIndex": "Air index: "
 }
