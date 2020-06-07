@@ -35,7 +35,10 @@
     "MannageAccount": "Zarządzaj kontem",
     "Country": "Kraj",
     "Edit": "Edytuj",
-    "ChangeLanguage": "Zmień język"
-
-
+    "ChangeLanguage": "Zmień język",
+    "ChooseLanguage": "Wybierz język",
+    "Language": "Język",
+    "English" : "Angielski",
+    "Polish": "Polski",
+    "Save": "Zapisz"
 }

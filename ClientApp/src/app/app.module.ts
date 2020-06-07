@@ -21,6 +21,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { ResetPasswordConfirmationComponent } from './reset-password-confirmation/reset-password-confirmation.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { EmailConfirmationComponent } from './email-confirmation/email-confirmation.component';
+import { ChangeLanguageComponent } from './change-language/change-language.component';
 
 @NgModule({
    declarations: [
@@ -36,10 +37,12 @@ import { EmailConfirmationComponent } from './email-confirmation/email-confirmat
       ResetPasswordComponent,
       ResetPasswordConfirmationComponent,
       ChangePasswordComponent,
-      EmailConfirmationComponent
+      EmailConfirmationComponent,
+      ChangeLanguageComponent
    ],
    imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+
 
     HttpClientModule,
     TranslateModule.forRoot({
@@ -67,7 +70,8 @@ import { EmailConfirmationComponent } from './email-confirmation/email-confirmat
         ]
       },
       { path: 'change-password', component: ChangePasswordComponent },
-      { path: 'email-confirmation', component: EmailConfirmationComponent }
+      { path: 'email-confirmation', component: EmailConfirmationComponent },
+      { path: 'change-language', component: ChangeLanguageComponent}
     ]),
     ReactiveFormsModule
   ],

@@ -35,6 +35,10 @@
     "MannageAccount": "Manage account",
     "Country": "Country",
     "Edit": "Edit",
-    "ChangeLanguage": "Change language"
-
+    "ChangeLanguage": "Change language",
+    "ChooseLanguage": "Choose language",
+    "Language": "Language",
+    "English" : "English",
+    "Polish": "Polish",
+    "Save": "Save"
 }
