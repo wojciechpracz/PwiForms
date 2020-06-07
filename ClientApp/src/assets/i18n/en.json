@@ -1,5 +1,5 @@
 {
-    "ShowOrEditProfileInfo" : "If you want to view or edit your personal data, click the button below.",
+    "ShowOrEditProfileInfo" : "If you want to view or edit your personal data, click ",
     "Welcome": "Welcome",    
     "LoginOrRegister" : "Register or login, using one of the buttons below",
     "Registration": "Register",
@@ -32,7 +32,7 @@
     "ActivationLinkSent": "Link to actiavte the account has been sent to the entered email address. Activate the account and log in.",
     "AccountActivated": "Your account has been activated. Click the button below to log in.",
     "Logout": "Log out",
-    "MannageAccount": "Manage account",
+    "ManageAccount": "Manage account",
     "Country": "Country",
     "Edit": "Edit",
     "ChangeLanguage": "Change language",
@@ -40,5 +40,20 @@
     "Language": "Language",
     "English" : "English",
     "Polish": "Polish",
-    "Save": "Save"
+    "Save": "Save",
+    "IntroText": "This project has been created using ASP.NET Core and Angular for PWI Course. Register or login, using one of the buttons below",
+    "Download": "Download",
+    "CheckAirQuality": "Check air quality",
+    "Here": "here.",
+    "ShowAllStations": "Show all stations",
+    "ShowSavedStations": "Show saved stations",
+    "StationName": "Name",
+    "Commune": "Commune",
+    "District": "District",
+    "Province": "Province",
+    "Actions": "Actions",
+    "Details": "Details"
+
+
+
 }

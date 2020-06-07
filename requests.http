@@ -63,3 +63,7 @@ content-type: application/json
     "Token": "6a5dab30-7343-4b3f-9c88-97fbef04c591",
     "NewPassword": "haslo2"
 }
+
+##############################################
+
+GET http://localhost:5000/stations HTTP/1.1

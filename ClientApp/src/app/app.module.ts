@@ -7,6 +7,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 // import ngx-translate and the http loader
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 
 import { AppComponent } from './app.component';
@@ -22,6 +24,8 @@ import { ResetPasswordConfirmationComponent } from './reset-password-confirmatio
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { EmailConfirmationComponent } from './email-confirmation/email-confirmation.component';
 import { ChangeLanguageComponent } from './change-language/change-language.component';
+import { AllStationsComponent } from './all-stations/all-stations.component';
+import { StationDetailsComponent } from './station-details/station-details.component';
 
 @NgModule({
    declarations: [
@@ -38,12 +42,17 @@ import { ChangeLanguageComponent } from './change-language/change-language.compo
       ResetPasswordConfirmationComponent,
       ChangePasswordComponent,
       EmailConfirmationComponent,
-      ChangeLanguageComponent
+      ChangeLanguageComponent,
+      AllStationsComponent,
+      StationDetailsComponent
    ],
    imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
 
 
+
+    BrowserAnimationsModule,
+    BsDropdownModule.forRoot(),
     HttpClientModule,
     TranslateModule.forRoot({
         loader: {
@@ -71,7 +80,8 @@ import { ChangeLanguageComponent } from './change-language/change-language.compo
       },
       { path: 'change-password', component: ChangePasswordComponent },
       { path: 'email-confirmation', component: EmailConfirmationComponent },
-      { path: 'change-language', component: ChangeLanguageComponent}
+      { path: 'change-language', component: ChangeLanguageComponent},
+      { path: 'all-stations', component: AllStationsComponent}
     ]),
     ReactiveFormsModule
   ],

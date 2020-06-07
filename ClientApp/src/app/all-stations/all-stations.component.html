@@ -1,0 +1,42 @@
+<div class="container">
+
+  <h5 class="text-center mb-3 mt-3">
+    Wybierz z poniższej listy stację, dla której chcesz sprawdzić jakość powietrza
+  </h5>
+
+  <table class="table">
+    <thead>`
+        <tr>
+            <th scope="col">{{"StationName" | translate}}</th>
+            <th scope="col">{{"Commune" | translate}}</th>
+            <th scope="col">{{"District" | translate}}</th>
+            <th scope="col">{{"Province" | translate}}</th>
+            <th scope="col">{{"Actions" | translate}}</th>
+        </tr>
+    </thead>
+    <tbody>
+       <tr *ngFor="let station of stations">
+          <td>
+            {{station.stationName}}
+          </td>
+          <td>
+            {{station.commune}}
+          </td>
+          <td>
+            {{station.district}}
+          </td>
+          <td>
+            {{station.province}}
+          </td>
+          <td>
+            <div class="row text-center">
+              <a class="col" href="#">{{"Details" | translate}}</a>          
+              <a class="col" href="#">{{"Save" | translate}}</a>
+            </div>
+          </td>
+
+       </tr>
+    </tbody>
+</table>
+
+</div>

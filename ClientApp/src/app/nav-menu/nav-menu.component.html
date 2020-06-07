@@ -1,6 +1,6 @@
 <header>
   <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+    class="navbar navbar-light bg-white border-bottom box-shadow mb-3"
   >
     <div class="container">
       <a class="navbar-brand" [routerLink]="['/']">AirQuality</a>
@@ -16,15 +16,20 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div
-        class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
+        class="navbar-collapse collapse text-right"
         [ngClass]="{ show: isExpanded }"
       >
-        <ul class="navbar-nav flex-grow" *ngIf="!loggedIn()">
+        <ul class="navbar-nav" *ngIf="!loggedIn()">
           <li
             class="nav-item"
             [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }"
           >
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/change-language']"
+              >{{'ChangeLanguage' | translate}}</a
+            >
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/registration']"
@@ -36,7 +41,7 @@
               >{{'Login' | translate}}</a>
           </li>
         </ul>
-        <ul class="navbar-nav flex-grow" *ngIf="loggedIn()">
+        <ul class="navbar-nav" *ngIf="loggedIn()">
           <li
             class="nav-item"
             [routerLinkActive]="['link-active']"
@@ -47,6 +52,13 @@
             <a class="nav-link text-dark" [routerLink]="['/change-language']"
               >{{'ChangeLanguage' | translate}}</a
             >
+            
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/user-profile']"
+              >{{'ManageAccount' | translate}}</a
+            >
+            
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" (click)="logout()"
