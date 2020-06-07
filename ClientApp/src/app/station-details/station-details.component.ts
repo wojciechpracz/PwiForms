@@ -12,6 +12,7 @@ export class StationDetailsComponent implements OnInit {
   constructor(private stationService: StationService, private route: ActivatedRoute) { }
   stationId: any;
   station: any;
+  saved = false;
 
   ngOnInit() {
     this.stationId = this.route.snapshot.paramMap.get('id');
@@ -22,6 +23,13 @@ export class StationDetailsComponent implements OnInit {
       console.log(this.station);
     });
 
+  }
+
+  saveUserStation() {
+    this.saved = true;
+    this.stationService.saveUserStation(this.stationId).subscribe(res => {
+
+    }, error => {});
   }
 
 }

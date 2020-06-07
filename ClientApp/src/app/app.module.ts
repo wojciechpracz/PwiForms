@@ -26,6 +26,7 @@ import { EmailConfirmationComponent } from './email-confirmation/email-confirmat
 import { ChangeLanguageComponent } from './change-language/change-language.component';
 import { AllStationsComponent } from './all-stations/all-stations.component';
 import { StationDetailsComponent } from './station-details/station-details.component';
+import { SavedStationsComponent } from './saved-stations/saved-stations.component';
 
 @NgModule({
    declarations: [
@@ -44,10 +45,12 @@ import { StationDetailsComponent } from './station-details/station-details.compo
       EmailConfirmationComponent,
       ChangeLanguageComponent,
       AllStationsComponent,
-      StationDetailsComponent
+      StationDetailsComponent,
+      SavedStationsComponent
    ],
    imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+
 
 
 
@@ -82,6 +85,7 @@ import { StationDetailsComponent } from './station-details/station-details.compo
       { path: 'email-confirmation', component: EmailConfirmationComponent },
       { path: 'change-language', component: ChangeLanguageComponent},
       { path: 'all-stations', component: AllStationsComponent},
+      { path: 'saved-stations', component: SavedStationsComponent},
       { path: 'station/:id', component: StationDetailsComponent, pathMatch: 'full'}
     ]),
     ReactiveFormsModule

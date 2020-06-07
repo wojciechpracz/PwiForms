@@ -54,5 +54,8 @@
     "Actions": "Actions",
     "Details": "Details",
     "PickAStation": "Pick a station to check air quality.",
-    "AirIndex": "Air index: "
+    "AirIndex": "Air index: ",
+    "AddToSaved": "Add to saved",
+    "AddedToSaved": "Added to saved!"
+
 }

@@ -71,3 +71,8 @@ GET http://localhost:5000/stations HTTP/1.1
 ##############################################
 
 GET http://localhost:5000/stations/114 HTTP/1.1
+
+
+##############################################
+
+GET http://localhost:5000/stations/userStations/1 HTTP/1.1

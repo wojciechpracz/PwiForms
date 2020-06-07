@@ -14,5 +14,6 @@ namespace pwiforms2.Data
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<PasswordReset> PasswordResets { get; set; }
+        public virtual DbSet<UserStation> UserStations { get; set; }
     }
 }

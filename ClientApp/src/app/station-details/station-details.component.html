@@ -23,5 +23,12 @@
     <p>---------------------------------------------------------------------------------------------</p>
     <h3 class="text-primary">{{"AirIndex" | translate}} </h3>
     <p>{{station.airIndex}}</p>
+    <div *ngIf="!saved">
+      <button class="btn btn-primary" (click) ="saveUserStation()">{{"AddToSaved" | translate}}</button>
+    </div>
+    <div *ngIf = "saved">
+      <p class="text-success">{{"AddedToSaved" | translate}}</p>
+    </div>
   </div>
+
 </div>

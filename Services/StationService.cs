@@ -6,29 +6,41 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using PwiForms.Helpers;
+using PwiForms.Models;
+using pwiforms2.Data;
 using pwiforms2.Models;
 
 namespace PwiForms.Services
 {
-    public class StationService: IStationService
+    public class StationService : IStationService
     {
+        private readonly DataContext _context;
+        public StationService(DataContext context)
+        {
+            _context = context;
+        }
+
         public async Task<IEnumerable<Station>> GetStations()
         {
             var stations = new List<Station>();
-            using(var client = new HttpClient())
+            using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://api.gios.gov.pl/pjp-api/rest/");
 
                 var response = await client.GetAsync("station/findAll");
 
-                if(response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
                     var res = await response.Content.ReadAsStringAsync();
                     stations = JsonConvert.DeserializeObject<List<Station>>(res, new StationConverter());
-
                 }
             }
             return stations;
+        }
+
+        public IEnumerable<UserStation> GetUserStations(int userId) 
+        {
+            return _context.UserStations.Where(us => us.UserId == userId).ToList();
         }
 
         public async Task<IEnumerable<MeasurementPosition>> GetPositions(int stationId)
@@ -62,7 +74,7 @@ namespace PwiForms.Services
                 string req = String.Format("data/getData/{0}", sensorId);
 
                 var response = await client.GetAsync(req);
-                
+
                 if (response.IsSuccessStatusCode)
                 {
                     var result = await response.Content.ReadAsStringAsync();
@@ -95,6 +107,19 @@ namespace PwiForms.Services
             return index;
         }
 
+        public async Task<bool> AddStationForUser(UserStation userStation)
+        {
+            var userStationFromDb = _context.UserStations
+                .FirstOrDefault(us => us.StationId == userStation.StationId && us.UserId == userStation.UserId);
+
+            if(userStationFromDb == null)
+            {
+                await _context.UserStations.AddAsync(userStation);
+                return await _context.SaveChangesAsync() > 0;
+            }    
+
+            return false;
+        }
     }
 
 }

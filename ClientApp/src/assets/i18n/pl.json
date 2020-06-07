@@ -54,6 +54,9 @@
     "Actions": "Akcje",    
     "Details": "Szczegóły",
     "PickAStation": "Wybierz z poniższej listy stację, dla której chcesz sprawdzić jakość powietrza",
-    "AirIndex": "Wskaźnik jakości powietrza: "
+    "AirIndex": "Wskaźnik jakości powietrza: ",
+    "AddToSaved": "Dodaj do zapisanych",
+    "AddedToSaved": "Dodano do zapisanych!"
+
 
 }

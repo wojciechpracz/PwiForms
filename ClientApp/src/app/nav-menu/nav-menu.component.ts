@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginService } from '../services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-menu',
@@ -13,7 +14,7 @@ export class NavMenuComponent {
     this.isExpanded = false;
   }
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   toggle() {
     this.isExpanded = !this.isExpanded;
@@ -26,5 +27,6 @@ export class NavMenuComponent {
 
   logout() {
     this.loginService.logout();
+    this.router.navigate(['/']);
   }
 }

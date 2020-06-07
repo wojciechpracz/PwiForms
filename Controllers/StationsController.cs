@@ -5,6 +5,7 @@ using PwiForms.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using PwiForms.ViewModels;
+using pwiforms2.Models;
 
 namespace PwiForms.Controllers
 {
@@ -23,6 +24,24 @@ namespace PwiForms.Controllers
         {
             var stations = await _service.GetStations();
             return Ok(stations);
+        }
+
+        [HttpGet("userStations/{userId}")]
+        public async Task<IActionResult> GetUserStations(int userId) 
+        {
+            var userStations = _service.GetUserStations(userId);
+
+            var allStations = await _service.GetStations();
+
+            var stationsToReturn = new List<Station>();
+
+            foreach (var station in userStations)
+            {
+                var stationToAdd = allStations.FirstOrDefault(s => s.StationId == station.StationId);
+                stationsToReturn.Add(stationToAdd);
+            }
+
+            return Ok(stationsToReturn);
         }
 
         [HttpGet("{id}")]
@@ -60,6 +79,19 @@ namespace PwiForms.Controllers
             return Ok(viewModel);
 
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AddStationForUser(UserStation userStation)
+        {
+            if (await _service.AddStationForUser(userStation))
+            {
+                return Ok();
+            }
+
+            return BadRequest();
+        }
+
+        
 
     }
 }
